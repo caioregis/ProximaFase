@@ -95,8 +95,8 @@ namespace HttpClientSampleConsole
                 ShowConsole(console);
 
                 //// Delete the console
-                var statusCode = await DeleteConsoleGameAsync(console.ConsoleGameID.ToString());
-                Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
+                //var statusCode = await DeleteConsoleGameAsync(console.ConsoleGameID.ToString());
+                //Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
             }
             catch (Exception e)
             {
