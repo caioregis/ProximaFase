@@ -37,5 +37,9 @@ namespace ProximaFase.Models
         public System.Data.Entity.DbSet<ProximaFase.Models.Mensagem> Mensagems { get; set; }
 
         public System.Data.Entity.DbSet<ProximaFase.Models.Combinacao> Combinacaos { get; set; }
+
+        public System.Data.Entity.DbSet<ProximaFase.Models.JogoPossuido> JogosPossuidos { get; set; }
+
+        public System.Data.Entity.DbSet<ProximaFase.Models.JogoDesejado> JogosDesejados { get; set; }
     }
 }

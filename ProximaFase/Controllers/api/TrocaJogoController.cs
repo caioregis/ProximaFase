@@ -13,11 +13,13 @@ namespace ProximaFase.Controllers.api
     {
         private ProximaFaseContext db = new ProximaFaseContext();
 
-        [Route("BuscarTroca")]
+        [Route("BuscarTrocaEquivalente")]
         [HttpPost] // There are HttpGet, HttpPost, HttpPut, HttpDelete.
-        public async Task<IHttpActionResult> BuscarTroca(Usuario usuario)
+        public async Task<IHttpActionResult> BuscarTrocaEquivalente(Usuario usuario)
         {
+            List<JogoDesejado> jogosDesejadosUsuario = usuario.JogosDesejados.ToList();
 
+            db.JogosPossuidos.All(jp => jp.nome.Any(jogosDesejadosUsuario.Any(jd => jd.nome));
 
 
             List<JogoPossuido> jogosPossuidosUsuario = usuario.JogosPossuidos.ToList();

@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201612141829055_alter_console.Designer.cs">
       <DependentUpon>201612141829055_alter_console.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612161916283_jogoDesejadoModel_e_jogoPossuidoModel_correcao.cs" />
+    <Compile Include="Migrations\201612161916283_jogoDesejadoModel_e_jogoPossuidoModel_correcao.Designer.cs">
+      <DependentUpon>201612161916283_jogoDesejadoModel_e_jogoPossuidoModel_correcao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartaoDeCredito.cs" />
     <Compile Include="Models\Combinacao.cs" />
@@ -348,6 +352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612141829055_alter_console.resx">
       <DependentUpon>201612141829055_alter_console.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161916283_jogoDesejadoModel_e_jogoPossuidoModel_correcao.resx">
+      <DependentUpon>201612161916283_jogoDesejadoModel_e_jogoPossuidoModel_correcao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
