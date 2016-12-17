@@ -16,6 +16,62 @@ namespace HttpClientSampleConsole
         public int Ano { get; set; }
     }
 
+    public class Usuario
+    {
+        public int id { get; set; }
+        public string login { get; set; }
+        public string email { get; set; }
+        public string senha { get; set; }
+        public string nome { get; set; }
+        public string telefone { get; set; }
+        public byte?[] foto { get; set; }
+        public Endereco endereco { get; set; }
+        public ICollection<JogoDesejado> JogosDesejados { get; set; }
+        public ICollection<JogoPossuido> JogosPossuidos { get; set; }
+    }
+
+    public class Endereco
+    {
+        public int id { get; set; }
+        public string cidade { get; set; }
+    }
+
+    public class JogoDesejado : Jogo
+    {
+        public new int id { get; set; }
+        public int usuarioID { get; set; }
+        public CondicaoJogo? estado { get; set; }
+
+        public virtual Usuario usuario { get; set; }
+    }
+
+    public class JogoPossuido : Jogo
+    {
+        public new int id { get; set; }
+        public int usuarioID { get; set; }
+        public string detalhes { get; set; }
+        public DateTime dataDeCompra { get; set; }
+        public CondicaoJogo? estado { get; set; }
+
+        public virtual Usuario usuario { get; set; }
+    }
+
+    public class Jogo
+    {
+        public int id { get; set; }
+        public string nome { get; set; }
+        public DateTime anoLancamento { get; set; }
+        public ConsoleGame console { get; set; }
+        public decimal valor { get; set; }
+    }
+
+    public enum CondicaoJogo
+    {
+        PerfeitoEstado,
+        CapaAvariada,
+        SemCapa
+    }
+
     class Program
     {
         static HttpClient client = new HttpClient();
@@ -61,6 +117,17 @@ namespace HttpClientSampleConsole
             return response.StatusCode;
         }
 
+        static async Task<List<JogoPossuido>> BuscarTrocaAsync(string path)
+        {
+            List<JogoPossuido> jogosEquivalentes = null;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                jogosEquivalentes = await response.Content.ReadAsAsync<List<JogoPossuido>>();
+            }
+            return jogosEquivalentes;
+        }
+
         static void Main()
         {
             RunAsync().Wait();
@@ -74,29 +141,95 @@ namespace HttpClientSampleConsole
 
             try
             {
-                // Create a new console
-                ConsoleGame console = new ConsoleGame { Nome = "NINTENDO 64", Ano = 2010 };
+                Usuario u1 = new Usuario
+                {
+                    id = 1,
+                    nome = "Teste1",
+                    endereco = new Endereco { cidade = "Rio de Janeiro" },
+                    JogosPossuidos = new List<JogoPossuido>()
+                    {
+                        new JogoPossuido() {
+                            nome = "A", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoPossuido() {
+                            nome = "B", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoPossuido() {
+                            nome = "C", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        }
+                    },
+                    JogosDesejados = new List<JogoDesejado>()
+                    {
+                        new JogoDesejado() {
+                            nome = "D", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoDesejado() {
+                            nome = "E", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoDesejado() {
+                            nome = "F", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        }
+                    }
+                };
+                Usuario u2 = new Usuario
+                {
+                    id = 2,
+                    nome = "Teste2",
+                    endereco = new Endereco { cidade = "Rio de Janeiro" },
+                    JogosDesejados = new List<JogoDesejado>()
+                    {
+                        new JogoDesejado() {
+                            nome = "F", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoDesejado() {
+                            nome = "G", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoDesejado() {
+                            nome = "H", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        }
+                    },
+                    JogosPossuidos = new List<JogoPossuido>()
+                    {
+                        new JogoPossuido() {
+                            nome = "C", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoPossuido() {
+                            nome = "D", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        },
+                        new JogoPossuido() {
+                            nome = "E", estado = CondicaoJogo.PerfeitoEstado, valor = 100
+                        }
+                    }
+                };
 
-                var url = await CreateConsoleGameAsync(console);
-                Console.WriteLine($"Created at {url}");
+                List<JogoPossuido> jogosEquivalentes = await BuscarTrocaAsync($"api/TrocaJogo/{u2.id}");
 
-                // Get the console
-                //console = await GetConsoleGameAsync($"api/consolegames/2");
-                console = await GetConsoleGameAsync(url.PathAndQuery);
-                ShowConsole(console);
 
-                //Update the console
-                Console.WriteLine("Atualizando ano...");
-                console.Ano = 2016;
-                await UpdateConsoleGameAsync(console);
+                List<JogoPossuido> jogosEquivalentes = await BuscarTrocaAsync($"api/TrocaJogo/{u2.id}");
 
-                //// Get the updated console
-                console = await GetConsoleGameAsync(url.PathAndQuery);
-                ShowConsole(console);
+                //// Create a new console
+                //ConsoleGame console = new ConsoleGame { Nome = "NINTENDO 64", Ano = 2010 };
 
-                //// Delete the console
-                //var statusCode = await DeleteConsoleGameAsync(console.ConsoleGameID.ToString());
-                //Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
+                //var url = await CreateConsoleGameAsync(console);
+                //Console.WriteLine($"Created at {url}");
+
+                //// Get the console
+                ////console = await GetConsoleGameAsync($"api/consolegames/2");
+                //console = await GetConsoleGameAsync(url.PathAndQuery);
+                //ShowConsole(console);
+
+                ////Update the console
+                //Console.WriteLine("Atualizando ano...");
+                //console.Ano = 2016;
+                //await UpdateConsoleGameAsync(console);
+
+                ////// Get the updated console
+                //console = await GetConsoleGameAsync(url.PathAndQuery);
+                //ShowConsole(console);
+
+                ////// Delete the console
+                ////var statusCode = await DeleteConsoleGameAsync(console.ConsoleGameID.ToString());
+                ////Console.WriteLine($"Deleted (HTTP Status = {(int)statusCode})");
             }
             catch (Exception e)
             {

@@ -1,5 +1,6 @@
 ﻿using ProximaFase.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -13,23 +14,43 @@ namespace ProximaFase.Controllers.api
     {
         private ProximaFaseContext db = new ProximaFaseContext();
 
-        [Route("BuscarTrocaEquivalente")]
-        [HttpPost] // There are HttpGet, HttpPost, HttpPut, HttpDelete.
-        public async Task<IHttpActionResult> BuscarTrocaEquivalente(Usuario usuario)
+        //[Route("BuscaTrocaEquivalentePorUsuario")]
+        [HttpGet] // There are HttpGet, HttpPost, HttpPut, HttpDelete.
+        public IQueryable<JogoPossuido> GetBuscaTrocaEquivalentePorUsuario(int id)
         {
-            List<JogoDesejado> jogosDesejadosUsuario = usuario.JogosDesejados.ToList();
+            Usuario usuarioBuscador = db.Usuarios.Find(id);
 
-            db.JogosPossuidos.All(jp => jp.nome.Any(jogosDesejadosUsuario.Any(jd => jd.nome));
+            IQueryable<JogoPossuido> jogosEquivalentes = db.JogosPossuidos.Where(jp => usuarioBuscador.JogosDesejados.All(jd => jd.nome.Equals(jp.nome) && valorDeJogoEquivalente(jd, jp) && condicaoDeJogoEquivalente(jd, jp) && distanciaEquivalente(jp.usuario, usuarioBuscador)));
 
+            //if (jogosEquivalentes == null)
+            //{
+            //    return NotFound();
+            //}
 
-            List<JogoPossuido> jogosPossuidosUsuario = usuario.JogosPossuidos.ToList();
+            //return Ok(jogosEquivalentes);
 
-
-            //db.Usuarios.All(u => u.endereco.bairro == usuario.endereco.bairro && u.JogosPossuidos.Any(jp => jp.jogo.nome == usuario.JogosDesejados.Any(j => j.jogo.nome == jp.jogo.nome)));
-
-
-            return Ok();
+            return jogosEquivalentes;
         }
 
+        private bool valorDeJogoEquivalente(JogoDesejado jogoDesejado, JogoPossuido jogoPossuido)
+        {
+            int valorjogoPossuido = (int)jogoDesejado.valor;
+
+            //cria intervalo de 10 a menos e 10 a mais no valor do jogo
+            IEnumerable<int> intervaloJogoPossuido = Enumerable.Range(valorjogoPossuido - 10, valorjogoPossuido + 10);
+
+            //verifica se o jogo desejado está dentro deste intervalo
+            return intervaloJogoPossuido.Contains(valorjogoPossuido);
+        }
+
+        private bool condicaoDeJogoEquivalente(JogoDesejado jogoDesejado, JogoPossuido jogoPossuido)
+        {
+            return jogoDesejado.estado == jogoPossuido.estado;
+        }
+
+        private bool distanciaEquivalente(Usuario usuariosExistente, Usuario usuarioBuscador)
+        {
+            return usuariosExistente.endereco.cidade == usuarioBuscador.endereco.cidade;
+        }
     }
 }
