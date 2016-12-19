@@ -10,8 +10,10 @@ namespace ProximaFase.Models
         public int id { get; set; }
         public string nome { get; set; }
         public DateTime anoLancamento { get; set; }
-        public ConsoleGame console { get; set; }
         public decimal valor { get; set; }
+
+        public int consoleID { get; set; }
+        public virtual ConsoleGame console { get; set; }
     }
 
     public enum CondicaoJogo

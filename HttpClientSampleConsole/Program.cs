@@ -205,7 +205,7 @@ namespace HttpClientSampleConsole
                 List<JogoPossuido> jogosEquivalentes = await BuscarTrocaAsync($"api/TrocaJogo/{u2.id}");
 
 
-                List<JogoPossuido> jogosEquivalentes = await BuscarTrocaAsync($"api/TrocaJogo/{u2.id}");
+                //List<JogoPossuido> jogosEquivalentes = await BuscarTrocaAsync($"api/TrocaJogo/{u2.id}");
 
                 //// Create a new console
                 //ConsoleGame console = new ConsoleGame { Nome = "NINTENDO 64", Ano = 2010 };

@@ -12,7 +12,10 @@ namespace ProximaFase.Models
         public string detalhes { get; set; }
         public DateTime dataDeCompra { get; set; }
         public CondicaoJogo? estado { get; set; }
+        public bool Disponivel { get; set; }
 
-        public virtual Usuario usuario { get; set; }
+
+        public virtual Combinacao combinacao { get; set; }
+        //public virtual Usuario usuario { get; set; }
     }
 }
