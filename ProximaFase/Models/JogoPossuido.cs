@@ -15,7 +15,7 @@ namespace ProximaFase.Models
         public bool Disponivel { get; set; }
 
 
-        public virtual Combinacao combinacao { get; set; }
-        //public virtual Usuario usuario { get; set; }
+        public virtual Usuario usuario { get; set; }
+        public virtual ICollection<Combinacao> combinacoes { get; set; }
     }
 }

@@ -9,10 +9,11 @@ namespace ProximaFase.Models
     public class Combinacao
     {
         public int CombinacaoID { get; set; }
-        public ICollection<JogoPossuido> JogosEnvolvidos { get; set; }
         public decimal ValorCombinacao { get; set; }
         public Status Status { get; set; }
 
+        public virtual ICollection<Usuario> UsuariosEnvolvidos { get; set; }
+        public virtual ICollection<JogoPossuido> JogosEnvolvidos { get; set; }
         public virtual ICollection<Mensagem> Mensagens { get; set; }
         public virtual ICollection<Contestacao> Contestacoes { get; set; }
     }
@@ -20,7 +21,7 @@ namespace ProximaFase.Models
     public enum Status
     {
         Aberta,
-        Finalizada,
+        Concluida,
         Fechada
     }
 }

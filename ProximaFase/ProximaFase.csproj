@@ -171,13 +171,17 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\api\ConsoleGamesController.cs" />
-    <Compile Include="Controllers\api\EnderecoesController.cs" />
     <Compile Include="Controllers\api\MensagemsController.cs" />
     <Compile Include="Controllers\api\PreferenciasController.cs" />
     <Compile Include="Controllers\api\TrocaJogoController.cs" />
     <Compile Include="Controllers\api\UsuariosController.cs" />
     <Compile Include="Controllers\CombinacaosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAO\CombinacaoDAO.cs" />
+    <Compile Include="DAO\JogoDesejadoDAO.cs" />
+    <Compile Include="DAO\JogoPossuidoDAO.cs" />
+    <Compile Include="DAO\MensagemDAO.cs" />
+    <Compile Include="DAO\UsuarioDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -285,6 +289,46 @@
     <Compile Include="Migrations\201612190544427_add_jogopossuido_teste.Designer.cs">
       <DependentUpon>201612190544427_add_jogopossuido_teste.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612191414411_add_correcao_combinacao_jogodesejado_jogopossuido.cs" />
+    <Compile Include="Migrations\201612191414411_add_correcao_combinacao_jogodesejado_jogopossuido.Designer.cs">
+      <DependentUpon>201612191414411_add_correcao_combinacao_jogodesejado_jogopossuido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191416099_add_correcao_combinacao4.cs" />
+    <Compile Include="Migrations\201612191416099_add_correcao_combinacao4.Designer.cs">
+      <DependentUpon>201612191416099_add_correcao_combinacao4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191417420_add_correcao_user1.cs" />
+    <Compile Include="Migrations\201612191417420_add_correcao_user1.Designer.cs">
+      <DependentUpon>201612191417420_add_correcao_user1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191445283_add_correcao_combinacao_.cs" />
+    <Compile Include="Migrations\201612191445283_add_correcao_combinacao_.Designer.cs">
+      <DependentUpon>201612191445283_add_correcao_combinacao_.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191450577_add_correcao_combinacao5.cs" />
+    <Compile Include="Migrations\201612191450577_add_correcao_combinacao5.Designer.cs">
+      <DependentUpon>201612191450577_add_correcao_combinacao5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191452218_add_correcao_combinacao6.cs" />
+    <Compile Include="Migrations\201612191452218_add_correcao_combinacao6.Designer.cs">
+      <DependentUpon>201612191452218_add_correcao_combinacao6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191606421_correcao_combinacao_include_usuariosEnvolvidos.cs" />
+    <Compile Include="Migrations\201612191606421_correcao_combinacao_include_usuariosEnvolvidos.Designer.cs">
+      <DependentUpon>201612191606421_correcao_combinacao_include_usuariosEnvolvidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191609413_correcao_jogopossuido_include_combinacoes.cs" />
+    <Compile Include="Migrations\201612191609413_correcao_jogopossuido_include_combinacoes.Designer.cs">
+      <DependentUpon>201612191609413_correcao_jogopossuido_include_combinacoes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612191932368_add_order.cs" />
+    <Compile Include="Migrations\201612191932368_add_order.Designer.cs">
+      <DependentUpon>201612191932368_add_order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612192013374_add_log_operacao.cs" />
+    <Compile Include="Migrations\201612192013374_add_log_operacao.Designer.cs">
+      <DependentUpon>201612192013374_add_log_operacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartaoDeCredito.cs" />
     <Compile Include="Models\Combinacao.cs" />
@@ -294,7 +338,9 @@
     <Compile Include="Models\Jogo.cs" />
     <Compile Include="Models\JogoDesejado.cs" />
     <Compile Include="Models\JogoPossuido.cs" />
+    <Compile Include="Models\Log.cs" />
     <Compile Include="Models\Mensagem.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\ProximaFaseContext.cs" />
     <Compile Include="Models\Preferencias.cs" />
     <Compile Include="Models\Usuario.cs" />
@@ -302,6 +348,8 @@
     <Compile Include="Services\CombinacaoService.cs" />
     <Compile Include="Services\JogoDesejadoService.cs" />
     <Compile Include="Services\JogoPossuidoService.cs" />
+    <Compile Include="Services\MensagemService.cs" />
+    <Compile Include="Services\UsuarioService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -436,6 +484,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612190544427_add_jogopossuido_teste.resx">
       <DependentUpon>201612190544427_add_jogopossuido_teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191414411_add_correcao_combinacao_jogodesejado_jogopossuido.resx">
+      <DependentUpon>201612191414411_add_correcao_combinacao_jogodesejado_jogopossuido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191416099_add_correcao_combinacao4.resx">
+      <DependentUpon>201612191416099_add_correcao_combinacao4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191417420_add_correcao_user1.resx">
+      <DependentUpon>201612191417420_add_correcao_user1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191445283_add_correcao_combinacao_.resx">
+      <DependentUpon>201612191445283_add_correcao_combinacao_.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191450577_add_correcao_combinacao5.resx">
+      <DependentUpon>201612191450577_add_correcao_combinacao5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191452218_add_correcao_combinacao6.resx">
+      <DependentUpon>201612191452218_add_correcao_combinacao6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191606421_correcao_combinacao_include_usuariosEnvolvidos.resx">
+      <DependentUpon>201612191606421_correcao_combinacao_include_usuariosEnvolvidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191609413_correcao_jogopossuido_include_combinacoes.resx">
+      <DependentUpon>201612191609413_correcao_jogopossuido_include_combinacoes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612191932368_add_order.resx">
+      <DependentUpon>201612191932368_add_order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612192013374_add_log_operacao.resx">
+      <DependentUpon>201612192013374_add_log_operacao.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

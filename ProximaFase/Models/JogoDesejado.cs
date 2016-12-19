@@ -11,6 +11,6 @@ namespace ProximaFase.Models
         public int usuarioID { get; set; }
         public CondicaoJogo? estado { get; set; }
 
-        //public virtual Usuario usuario { get; set; }
+        public virtual Usuario usuario { get; set; }
     }
 }

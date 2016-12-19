@@ -1,6 +1,8 @@
-﻿using ProximaFase.Models;
+﻿using ProximaFase.DAO;
+using ProximaFase.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 
@@ -8,16 +10,21 @@ namespace ProximaFase.Services
 {
     public class JogoPossuidoService
     {
-        private ProximaFaseContext db = new ProximaFaseContext();
+        private JogoPossuidoDAO _jogoPossuidoDAO;
 
-        public Usuario buscarUsuarioJogoPossuido(int id)
+        public JogoPossuidoService(ProximaFaseContext db)
         {
-            return db.Usuarios.FirstOrDefault(u => u.id == db.JogosPossuidos.FirstOrDefault(jd => jd.id == id).usuarioID);
+            _jogoPossuidoDAO = new JogoPossuidoDAO(db);
         }
 
-        public List<JogoPossuido> buscarJogosPossuidosDoUsuario(int usuarioId)
+        public List<JogoPossuido> BuscarTodosJogosPossuidos()
         {
-            return db.JogosPossuidos.Where(jp => jp.usuarioID == usuarioId).ToList();
+            return _jogoPossuidoDAO.BuscarTodosJogosPossuidos();
+        }
+
+        public List<JogoPossuido> BuscarJogosPossuidosDoUsuario(int usuarioId)
+        {
+            return _jogoPossuidoDAO.BuscarJogosPossuidosDoUsuario(usuarioId);
         }
     }
 }

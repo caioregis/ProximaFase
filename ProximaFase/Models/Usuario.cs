@@ -25,8 +25,9 @@ namespace ProximaFase.Models
         public virtual Endereco endereco { get; set; }
         public virtual ICollection<Preferencias> preferencias { get; set; }
         //public virtual ICollection<ConsoleGame> consolesPossuidos { get; set; }
-        //public virtual ICollection<JogoPossuido> JogosPossuidos { get; set; }
-        //public virtual ICollection<JogoDesejado> JogosDesejados { get; set; }
+        public virtual ICollection<JogoPossuido> JogosPossuidos { get; set; }
+        public virtual ICollection<JogoDesejado> JogosDesejados { get; set; }
+        public virtual ICollection<Combinacao> Combinacoes { get; set; }
         public virtual ICollection<CartaoDeCredito> MeiosDePagamento { get; set; }
     }
 }

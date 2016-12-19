@@ -9,7 +9,7 @@ namespace ProximaFase.Models
     {
         public int MensagemID { get; set; }
         public int CombinacaoID { get; set; }
-        public int DeUsuarioID { get; set; }
+        public int? DeUsuarioID { get; set; }
         public string MensagemText { get; set; }
         public DateTime DataHora { get; set; }
 
