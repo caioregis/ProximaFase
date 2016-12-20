@@ -29,5 +29,19 @@ namespace ProximaFase.DAO
         {
             return _db.Usuarios.Find(id);
         }
+
+        public bool UsuarioExiste(string login, string senha)
+        {
+            Usuario usuario = null;
+
+            usuario = _db.Usuarios.FirstOrDefault(u => u.login == login && u.senha == senha);
+
+            if (usuario != null)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

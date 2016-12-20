@@ -30,5 +30,10 @@ namespace ProximaFase.Services
         {
             return _usuarioDAO.BuscarUsuarioPorId(id);
         }
+
+        public bool UsuarioExiste(string login, string senha)
+        {
+            return _usuarioDAO.UsuarioExiste(login, senha);
+        }
     }
 }
