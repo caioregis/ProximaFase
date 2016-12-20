@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using ProximaFase.Models;
+using ProximaFase.Models.ViewModels;
 
 namespace ProximaFase.Controllers.api
 {
@@ -72,12 +73,30 @@ namespace ProximaFase.Controllers.api
 
         // POST: api/Usuarios
         [ResponseType(typeof(Usuario))]
-        public IHttpActionResult PostUsuario(Usuario usuario)
+        public IHttpActionResult PostUsuario([FromBody] UsuarioCreateViewModel usuarioViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            Usuario usuario = new Usuario()
+            {
+                login = usuarioViewModel.login,
+                email = usuarioViewModel.email,
+                nome = usuarioViewModel.nome,
+                senha = usuarioViewModel.senha,
+                telefone = usuarioViewModel.telefone,
+                endereco = new Endereco()
+                {
+                    logradouro = usuarioViewModel.logradouro,
+                    bairro = usuarioViewModel.bairro,
+                    cidade = usuarioViewModel.cidade,
+                    complemento = usuarioViewModel.complemento,
+                    estado = usuarioViewModel.estado,
+                    numero = usuarioViewModel.numero
+                }
+            };
 
             db.Usuarios.Add(usuario);
             db.SaveChanges();
