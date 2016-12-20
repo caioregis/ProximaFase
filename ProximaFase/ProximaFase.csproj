@@ -423,7 +423,6 @@
     <Compile Include="Controllers\api\ConsoleGamesController.cs" />
     <Compile Include="Controllers\api\LogsController.cs" />
     <Compile Include="Controllers\api\MensagemsController.cs" />
-    <Compile Include="Controllers\api\PreferenciasController.cs" />
     <Compile Include="Controllers\api\TrocaJogoController.cs" />
     <Compile Include="Controllers\api\UsuariosController.cs" />
     <Compile Include="Controllers\CombinacaosController.cs" />
