@@ -101,6 +101,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
+            <div class="alert alert-success hidden" role="alert">Cadastro efetuado com sucesso!</div>
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
@@ -130,7 +131,7 @@
                 estado: $('#estado').val(),
             };
 
-            console.log(objUser);
+           
 
             $.ajax({
                 url: "/api/usuarios/",
@@ -138,8 +139,11 @@
                 data: JSON.stringify(objUser),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (data) {
+                error: function(data) {
                     console.log(data);
+                },
+                success: function (data) {
+                    $('.alert').removeClass('hidden');
                 }
             })
         });
