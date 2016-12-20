@@ -30,7 +30,7 @@ namespace ProximaFase.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         nome = c.String(),
-                        anoLancamento = c.DateTime(nullable: false),
+                        anoLancamento = c.Int(nullable: false),
                         valor = c.Decimal(nullable: false, precision: 18, scale: 2),
                         console_ConsoleID = c.Int(),
                     })

@@ -13,7 +13,7 @@ namespace ProximaFase.Models
         [DataMember]
         public string nome { get; set; }
         [DataMember]
-        public DateTime anoLancamento { get; set; }
+        public int anoLancamento { get; set; }
         [DataMember]
         public decimal valor { get; set; }
         [DataMember]

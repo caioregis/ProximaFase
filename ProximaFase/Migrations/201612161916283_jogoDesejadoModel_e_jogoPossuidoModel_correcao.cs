@@ -14,11 +14,11 @@ namespace ProximaFase.Migrations
             DropIndex("dbo.Jogoes", new[] { "console_ConsoleGameID" });
             DropIndex("dbo.JogoPossuidoes", new[] { "jogoID" });
             AddColumn("dbo.JogoDesejadoes", "nome", c => c.String());
-            AddColumn("dbo.JogoDesejadoes", "anoLancamento", c => c.DateTime(nullable: false));
+            AddColumn("dbo.JogoDesejadoes", "anoLancamento", c => c.Int(nullable: false));
             AddColumn("dbo.JogoDesejadoes", "valor", c => c.Decimal(nullable: false, precision: 18, scale: 2));
             AddColumn("dbo.JogoDesejadoes", "console_ConsoleGameID", c => c.Int());
             AddColumn("dbo.JogoPossuidoes", "nome", c => c.String());
-            AddColumn("dbo.JogoPossuidoes", "anoLancamento", c => c.DateTime(nullable: false));
+            AddColumn("dbo.JogoPossuidoes", "anoLancamento", c => c.Int(nullable: false));
             AddColumn("dbo.JogoPossuidoes", "valor", c => c.Decimal(nullable: false, precision: 18, scale: 2));
             AddColumn("dbo.JogoPossuidoes", "console_ConsoleGameID", c => c.Int());
             CreateIndex("dbo.JogoDesejadoes", "console_ConsoleGameID");
@@ -38,7 +38,7 @@ namespace ProximaFase.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         nome = c.String(),
-                        anoLancamento = c.DateTime(nullable: false),
+                        anoLancamento = c.Int(nullable: false),
                         valor = c.Decimal(nullable: false, precision: 18, scale: 2),
                         console_ConsoleGameID = c.Int(),
                     })

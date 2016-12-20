@@ -60,7 +60,7 @@ namespace HttpClientSampleConsole
     {
         public int id { get; set; }
         public string nome { get; set; }
-        public DateTime anoLancamento { get; set; }
+        public int anoLancamento { get; set; }
         public ConsoleGame console { get; set; }
         public decimal valor { get; set; }
     }

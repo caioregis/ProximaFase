@@ -585,6 +585,10 @@
     <Compile Include="Migrations\201612200119025_add_correcao_mensagem.Designer.cs">
       <DependentUpon>201612200119025_add_correcao_mensagem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612201332293_populate.cs" />
+    <Compile Include="Migrations\201612201332293_populate.Designer.cs">
+      <DependentUpon>201612201332293_populate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartaoDeCredito.cs" />
     <Compile Include="Models\Combinacao.cs" />
@@ -776,6 +780,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612200119025_add_correcao_mensagem.resx">
       <DependentUpon>201612200119025_add_correcao_mensagem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201332293_populate.resx">
+      <DependentUpon>201612201332293_populate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
