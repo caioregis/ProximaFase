@@ -329,6 +329,10 @@
     <Compile Include="Migrations\201612192013374_add_log_operacao.Designer.cs">
       <DependentUpon>201612192013374_add_log_operacao.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612200119025_add_correcao_mensagem.cs" />
+    <Compile Include="Migrations\201612200119025_add_correcao_mensagem.Designer.cs">
+      <DependentUpon>201612200119025_add_correcao_mensagem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartaoDeCredito.cs" />
     <Compile Include="Models\Combinacao.cs" />
@@ -514,6 +518,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612192013374_add_log_operacao.resx">
       <DependentUpon>201612192013374_add_log_operacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200119025_add_correcao_mensagem.resx">
+      <DependentUpon>201612200119025_add_correcao_mensagem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
